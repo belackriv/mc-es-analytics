@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.AppLogo {
+  width: auto;
+  height: 150px;
+}
+
+.AppLogoContainer {
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+}
+
+.AppHeader {
+  background-color: white;
+  color: #00478c;
+  margin-bottom: 1em;
+}
+
+.AppTitle {
+  font-size: 1.5em;
+}
+
+.AppIntro {
+  font-size: large;
+}
+
+.AppDropTarget {
+
+}
+

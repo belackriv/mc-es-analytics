@@ -1,0 +1,8 @@
+.TextareaTargetContainer{
+	width: 45%;
+	margin: 2em;
+}
+.TextareaTargetInput{
+	height: 200px;
+	width: 100%
+}

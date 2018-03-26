@@ -1,0 +1,15 @@
+.DataPane{
+  list-style: none;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.DataItem{
+	border: 1px solid #00478c;
+	border-radius: 2px;
+	box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.2);
+	padding: 2px;
+	margin: 3px;
+	cursor: pointer;
+}

@@ -16,7 +16,12 @@ const DataImportComponent = (props) => {
       <div className={style.DataImportContainer}>
         <DropTarget onDrop={props.onDrop} isProccessing={props.isProccessing} />
         <div><span className={style.DataImportDividerText}>OR</span></div>
-        <TextareaTarget onSubmit={props.onSubmit} isProccessing={props.isProccessing} />
+        <TextareaTarget
+          value={props.textareaValue}
+          handleSeparatorChange={props.handleSeparatorChange}
+          separator={props.separator}
+          onSubmit={props.onSubmit}
+          isProccessing={props.isProccessing} />
       </div>
       {dataInfo}
       {loadingComponent}

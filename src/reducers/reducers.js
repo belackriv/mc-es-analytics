@@ -35,13 +35,27 @@ const pdfReducer = (state = defaultPdfState, action) => {
   }
 };
 
-const uiReducer = (state = {isProcessing: false, asyncProcesses: 0}, action) => {
+const defaultUiState = {
+  isProcessing: false,
+  asyncProcesses: 0,
+  selectedItemKeys: [],
+  textareaValue: null,
+  textareaValueSeparator: '\t',
+};
+
+const uiReducer = (state = defaultUiState, action) => {
   switch (action.type) {
     case ActionTypes.ASYNC_PROCESS_STARTED:
       return {...state, asyncProcesses: state.asyncProcesses + 1};
     case ActionTypes.ASYNC_PROCESS_ENDED:
       const isProcessing = (state.asyncProcesses > 1)?true:false;
       return {...state, asyncProcesses: state.asyncProcesses - 1, isProcessing: isProcessing};
+    case ActionTypes.SELECT_PDF_ITEMS:
+      return {...state, selectedItemKeys: Array.from(action.selectedItemKeys)};
+    case ActionTypes.SET_TEXTAREA_VALUE:
+      return {...state, textareaValue: action.textareaValue};
+    case ActionTypes.SEPARATOR_CHANGED:
+      return {...state, textareaValueSeparator: action.value};
     default:
       return state;
   }

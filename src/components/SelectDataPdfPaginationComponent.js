@@ -7,7 +7,6 @@ import Loading from './LoadingComponent.js';
 
 const SelectDataPdfPaginationComponent = (props) => {
   const loadingComponent = props.isProcessing?<Loading inline={true} size="2x" />:null;
-console.log(loadingComponent);
   const prevButtonDisabled = (props.currentPage > 0)?false:true;
   const nextButtonDisabled = (props.currentPage < (props.pages.length - 1))?false:true;
   return (

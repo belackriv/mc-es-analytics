@@ -4,7 +4,7 @@ import logo from '../mclogo.png';
 import style from './App.module.css';
 import DataImport from '../components/DataImportComponent.js';
 import SelectData from './SelectData.js';
-import { onFileDrop } from '../actions/actions.js';
+import { onFileDrop, separatorChanged } from '../actions/actions.js';
 
 class App extends Component {
   /*
@@ -32,6 +32,9 @@ class App extends Component {
         </header>
         <DataImport
           isProcessing={this.props.isProcessing}
+          textareaValue={this.props.textareaValue}
+          handleSeparatorChange={this.props.handleSeparatorChange}
+          separator={this.props.textareaValueSeparator}
           pdfPages={this.props.pdfPages}
           onDrop={this.props.onFileDrop}
           //onSubmit={this.props.onTextSubmit}
@@ -50,10 +53,13 @@ const mapStateToProps = (state, ownProps) => ({
   pdfPages: state.pdf.pages,
   pdfItems: state.pdf.items,
   isProcessing: state.ui.isProcessing,
+  textareaValue: state.ui.textareaValue,
+  textareaValueSeparator: state.ui.textareaValueSeparator
 })
 
 const mapDispatchToProps  = (dispatch, ownProps) => ({
   onFileDrop: (files) => { dispatch(onFileDrop(files)); },
+  handleSeparatorChange: (event) =>{ console.log(event.target.value); dispatch(separatorChanged(event.target.value)); },
   //onTextSubmit: () => { dispatch(showUploadJobsForm()); },
 })
 

@@ -1,3 +1,4 @@
+import UUID from 'uuidjs';
 
 export const ASYNC_PROCESS_STARTED = 'ASYNC_PROCESS_STARTED';
 export const asyncProcessStarted = () => ({
@@ -110,6 +111,7 @@ export const processPdfPageTextContent = (page) => {
         }
 
         items.push({
+          id: UUID.generate(),
         	viewport: viewport,
           str: textItem.str,
           style : {
@@ -130,3 +132,31 @@ export const processPdfPageTextContent = (page) => {
     });
   };
 };
+
+export const SELECT_PDF_ITEMS = 'SELECT_PDF_ITEMS';
+export const SET_TEXTAREA_VALUE = 'SET_TEXTAREA_VALUE';
+export const selectPdfItems = (selectedItemKeys) => {
+  return (dispatch, getState)=>{
+    dispatch({
+      type: SELECT_PDF_ITEMS,
+      selectedItemKeys: selectedItemKeys
+    });
+    const currentState = getState();
+    const separator = currentState.ui.textareaValueSeparator==='tab'?'\t':'\n';
+    let textareaValue = selectedItemKeys.map((itemKey)=>{
+      return currentState.pdf.pageItems.find((elem)=>{ return (elem.id === itemKey)}).str;
+    }).join(separator);
+    dispatch({
+      type: SET_TEXTAREA_VALUE,
+      textareaValue: textareaValue
+    });
+  };
+};
+
+
+
+export const SEPARATOR_CHANGED = 'SEPARATOR_CHANGED';
+export const separatorChanged = (separator) => ({
+  type: SEPARATOR_CHANGED,
+  value: separator
+});

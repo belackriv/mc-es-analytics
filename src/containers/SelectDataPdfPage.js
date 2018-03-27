@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { processPdfPageTextContent } from '../actions/actions.js';
+import { processPdfPageTextContent, selectPdfItems } from '../actions/actions.js';
 import SelectDataPdfPageComponent from '../components/SelectDataPdfPageComponent.js';
 
  class SelectDataPdfPage extends Component {
@@ -26,12 +26,23 @@ import SelectDataPdfPageComponent from '../components/SelectDataPdfPageComponent
 const mapStateToProps =  (state, ownProps) => {
   return {
     items: state.pdf.pageItems,
-    viewport: state.pdf.viewport
+    viewport: state.pdf.viewport,
+    selectedKeys: state.ui.selectedItemKeys,
   }
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatch: dispatch,
+    handleSelection:  (itemKeys) => {
+      dispatch(selectPdfItems(itemKeys));
+    },
+  }
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SelectDataPdfPage);
  
 

@@ -6,9 +6,19 @@
 	margin: 0 auto;
 }
 
-.PdfTextItem{
+.PdfTextItem, .PdfTextItemSelected{
 	position: absolute;
   	cursor: text;
   	white-space: pre;
   	transform-origin: left bottom;
+}
+
+.PdfTextItemSelected{
+	border: 2px dashed gray;
+	border-radius: 2px;
+}
+
+.SelectableGroup{
+	width: 120%;
+	height:120%;
 }
